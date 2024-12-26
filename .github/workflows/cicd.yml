@@ -51,4 +51,4 @@ jobs:
             sudo docker rm eureka || true
             sudo docker build -t eureka-image .
             sudo docker run -d -p 8761:8761 --name eureka --net back_network -e "SPRING_PROFILES_ACTIVE=prod" eureka-image
-            docker network connect backend-network eureka
+            docker network connect backend_network eureka
