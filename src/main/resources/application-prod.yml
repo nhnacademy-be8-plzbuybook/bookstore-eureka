@@ -7,7 +7,7 @@ spring:
     activate:
       on-profile: prod
   application:
-    name: discovery service-prod
+    name: eureka
 
 logging:
   level:

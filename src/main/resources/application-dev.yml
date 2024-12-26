@@ -7,7 +7,7 @@ spring:
     activate:
       on-profile: dev
   application:
-    name: discovery service-dev
+    name: eureka
 
 logging:
   level:
