@@ -68,6 +68,31 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- log&crash logback sdk 사용을 위한 필수 의존성 -->
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20240303</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.5.14</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.5.12</version>
+        </dependency>
+        <!-- sdk 파일을 실행시키기 위한 libs 하위 jar파일 직접 의존성 추가 -->
+<!--        <dependency>-->
+<!--            <groupId>com.nhnacademy</groupId>-->
+<!--            <artifactId>toast-logncrash-java-sdk</artifactId>-->
+<!--            <version>3.0.5</version>-->
+<!--            <scope>system</scope>-->
+<!--            <systemPath>${project.basedir}/libs/toast-logncrash-logback-sdk-3.0.5.jar</systemPath>-->
+<!--        </dependency>-->
+
     </dependencies>
     <dependencyManagement>
         <dependencies>
@@ -128,7 +153,28 @@
                     </execution>
                 </executions>
             </plugin>
+            <!-- logback sdk 빌드에 포함 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.6.0</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <createDependencyReducedPom>true</createDependencyReducedPom>
+                            <relocations>
+                                <!-- 필요에 따라 클래스 이름 충돌 방지를 위한 relocation 설정 -->
+                            </relocations>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
+
     </build>
 
 </project>
