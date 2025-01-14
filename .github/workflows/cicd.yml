@@ -50,5 +50,5 @@ jobs:
             sudo docker stop eureka || true
             sudo docker rm eureka || true
             sudo docker build -t eureka-image .
-            sudo docker run -d -p 8761:8761 --name eureka --net front_network -e "SPRING_PROFILES_ACTIVE=prod" eureka-image
+            sudo docker run -d -p 8761:8761 --name eureka --net front_network -e "SPRING_PROFILES_ACTIVE=prod" -e "TZ=Asia/Seoul" eureka-image
 #            docker network connect front_network eureka
