@@ -22,7 +22,7 @@ jobs:
         run: mvn -B package --file pom.xml
 
       - name: Delete files in server
-        run: rm -rf /home/be8/be8-team4/shop/*
+        run: rm -rf /home/be8/be8-team4/eureka/*
 
       - name: Copy files to server
         uses: appleboy/scp-action@master
@@ -32,7 +32,7 @@ jobs:
           port: ${{ secrets.SSH_NHN_PORT }}
           password: ${{ secrets.SSH_NHN_PASSWORD }}
           source: "target/*.jar"
-          target: "/home/be8/be8-team4/shop"
+          target: "/home/be8/be8-team4/eureka"
 
       - name: Deploy to server via SSH
         uses: appleboy/ssh-action@master
@@ -43,5 +43,5 @@ jobs:
           password: ${{ secrets.SSH_NHN_PASSWORD }}
           script: |
             echo -e "Starting jar on port 10149"
-            nohup /usr/local/java/java21/bin/java -Dserver.port=10149 -Dspring.profiles.active=nhn -jar /home/be8/be8-team4/shop/target/book-0.0.1-SNAPSHOT.jar > /home/be8/be8-team4/shop/log_10149.log 2>&1 &
+            nohup /usr/local/java/java21/bin/java -Dserver.port=10149 -Dspring.profiles.active=nhn -jar /home/be8/be8-team4/shop/target/BookStoreEureka-0.0.1-SNAPSHOT.jar > /home/be8/be8-team4/eureka/log_10149.log 2>&1 &
 
