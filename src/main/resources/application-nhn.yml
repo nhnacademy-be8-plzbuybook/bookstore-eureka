@@ -7,7 +7,7 @@ spring:
 
 logging:
   level:
-    root: DEBUG
+    root: ERROR
 
 
 # 유레카가 자기 자신을 등록하지 않아도됌

@@ -48,7 +48,7 @@ jobs:
             cd /home/be8/be8-team4/eureka
             
             echo -e "Starting jar on port 10149"
-            nohup /usr/local/java/java21/bin/java -Dserver.port=10149 -Dspring.profiles.active=nhn -jar /home/be8/be8-team4/shop/target/BookStoreEureka-0.0.1-SNAPSHOT.jar > /home/be8/be8-team4/eureka/log_10149.log 2>&1 &
+            nohup /usr/local/java/java21/bin/java -Dserver.port=10149 -Dspring.profiles.active=nhn -jar /home/be8/be8-team4/eureka/BookStoreEureka-0.0.1-SNAPSHOT.jar > /home/be8/be8-team4/eureka/log_10149.log 2>&1 &
           debug: true
           
 
