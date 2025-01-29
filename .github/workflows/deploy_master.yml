@@ -43,6 +43,11 @@ jobs:
           port: ${{ secrets.SSH_NHN_PORT }}
           password: ${{ secrets.SSH_NHN_PASSWORD }}
           script: |
+            # 기존 애플리케이션 종료
+            echo -e "Stopping existing applications on ports 10149"
+            PID_10149=$(lsof -t -i:10149) || true
+            [ -n "$PID_10149" ] && kill $PID_10149 || echo "No process found on port 10149"
+            
             mkdir -p /home/be8/be8-team4/eureka
             
             cd /home/be8/be8-team4/eureka
