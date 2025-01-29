@@ -43,12 +43,17 @@ jobs:
           port: ${{ secrets.SSH_NHN_PORT }}
           password: ${{ secrets.SSH_NHN_PASSWORD }}
           script: |
+            # 기존 애플리케이션 종료
+            echo -e "Stopping existing applications on ports 10149"
+            PID_10149=$(lsof -t -i:10149) || true
+            [ -n "$PID_10149" ] && kill $PID_10149 || echo "No process found on port 10149"
+            
             mkdir -p /home/be8/be8-team4/eureka
             
             cd /home/be8/be8-team4/eureka
             
             echo -e "Starting jar on port 10149"
-            nohup /usr/local/java/java21/bin/java -Dserver.port=10149 -Dspring.profiles.active=nhn -jar /home/be8/be8-team4/shop/target/BookStoreEureka-0.0.1-SNAPSHOT.jar > /home/be8/be8-team4/eureka/log_10149.log 2>&1 &
+            nohup /usr/local/java/java21/bin/java -Dserver.port=10149 -Dspring.profiles.active=nhn -jar /home/be8/be8-team4/eureka/BookStoreEureka-0.0.1-SNAPSHOT.jar > /home/be8/be8-team4/eureka/log_10149.log 2>&1 &
           debug: true
           
 
